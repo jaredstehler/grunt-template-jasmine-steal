@@ -1,23 +1,24 @@
 {
-  "name": "grunt-template-jasmine-requirejs",
+  "name": "grunt-template-jasmine-steal",
   "version": "0.1.0",
-  "description": "Requirejs template for grunt-contrib-jasmine",
-  "main": "src/template-jasmine-requirejs.js",
+  "description": "StealJS template for grunt-contrib-jasmine",
+  "main": "src/template-jasmine-steal.js",
   "scripts": {
     "test": "grunt test"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jsoverson/grunt-template-jasmine-requirejs"
+    "url": "https://github.com/jaredstehler/grunt-template-jasmine-steal"
   },
   "keywords": [
     "grunt",
     "template",
-    "requirejs",
+    "steal",
     "jasmine",
     "test"
   ],
-  "author": "Jarrod Overson",
+  "author": "Jared Stehler",
+  "contributors": ["Jarrod Overson"],
   "license": "BSD",
   "devDependencies": {
     "grunt-contrib-jshint": "~0.1.1rc5",

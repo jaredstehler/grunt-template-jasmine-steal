@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Jasmine Spec Runner</title>
+
+  <% with (scripts) { %>
+  <% [].concat(jasmine, vendor, helpers).forEach(function(script){ %>
+  <script src="<%= script %>"></script>
+  <% }) %>
+  <% }; %>
+
+  <script src="<%= temp %>/steal/steal.js"></script>
+  <script>
+    <% if (options.stealOptions.config) { %>
+      //steal.config(<%= JSON.stringify(options.stealOptions.config) %>);
+    <% } %>
+  </script>
+
+  <% css.forEach(function(style){ %>
+  <link rel="stylesheet" type="text/css" href="<%= style %>">
+  <% }) %>
+  
+  <script>
+	steal
+	<% scripts.specs.forEach(function(script, i){ %>
+	  <% script = script.replace(/^\.\//, "/"); %>
+		.then("<%= script %>")
+	<% }) %>
+	<% scripts.reporters.forEach(function(script, i){ %>
+	  <% script = script.replace(/^\.\//, "/"); %>
+		.then("<%= script %>")
+	<% }) %>
+	<% scripts.start.forEach(function(script, i){ %>
+	  <% script = script.replace(/^\.\//, "/"); %>
+		.then("<%= script %>")
+	<% }) %>
+  </script>
+</head>
+<body>
+</body>
+</html>

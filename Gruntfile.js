@@ -45,16 +45,16 @@ module.exports = function(grunt) {
       }
     },
     jasmine: {
-      requirejs: {
-        src: 'test/fixtures/requirejs/src/**/*.js',
+      steal: {
+        src: 'test/fixtures/steal/src/**/*.js',
         options: {
-          specs: 'test/fixtures/requirejs/spec/*Spec.js',
-          helpers: 'test/fixtures/requirejs/spec/*Helper.js',
+          specs: 'test/fixtures/steal/spec/*Spec.js',
+          helpers: 'test/fixtures/steal/spec/*Helper.js',
           host: 'http://127.0.0.1:<%= connect.test.port %>/',
           template : require('./'),
           templateOptions: {
-            requireConfig : {
-              baseUrl: './test/fixtures/requirejs/src/'
+            stealOptions : {
+              baseUrl: '../..'
             }
           }
         }
@@ -67,7 +67,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-connect');
 
-  grunt.registerTask('test', ['connect', 'jasmine:requirejs']);
+  grunt.registerTask('test', ['connect', 'jasmine:steal']);
 
   // Default task.
   grunt.registerTask('default', ['jshint','test']);
