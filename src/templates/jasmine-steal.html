@@ -10,7 +10,7 @@
   <% }) %>
   <% }; %>
 
-  <script src="<%= temp %>/steal/steal.js"></script>
+  <script src="<%= options.stealOptions.stealUrl %>"></script>
   <script>
     <% if (options.stealOptions.config) { %>
       //steal.config(<%= JSON.stringify(options.stealOptions.config) %>);
