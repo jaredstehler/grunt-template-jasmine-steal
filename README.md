@@ -9,17 +9,16 @@ npm install grunt-template-jasmine-steal --save-dev
 
 ## Template Options
 
-### templateOptions.version
+### templateOptions.stealOptions.stealUrl
 Type: `String`
-Default: latest steal version included
+Default: path to steal.js (defaults to internal version, probably not desired)
 
 The version of steal to use.
 
-### templateOptions.stealConfig
+### templateOptions.stealOptions.config
 Type: `Object`
 
 This object is `JSON.stringify()`-ed into the template and passed into `steal.config()`
-
 
 
 ## Sample usage
@@ -42,7 +41,8 @@ grunt.initConfig({
         template: require('grunt-template-jasmine-steal'),
         templateOptions: {
           stealConfig: {
-            baseUrl: 'src/'
+			stealUrl: '/src/steal/steal.js',
+            baseUrl: '/'
           }
         }
       }
@@ -58,16 +58,17 @@ grunt.initConfig({
 
 ## Steal notes
 
-If you end up using this template, it's worth looking at the
-[source]() in order to familiarize yourself with how it loads your files. The load process
-consists of a series of nested `require` blocks, incrementally loading your source and specs:
+With this template, you can use steal in your spec files the same way you would in the 
+rest of your application.
 
 ```js
-require([*YOUR SOURCE*], function() {
-  require([*YOUR SPECS*], function() {
-    require([*GRUNT-CONTRIB-JASMINE FILES*], function() {
-      // at this point your tests are already running.
-    }
-  }
-}
+/* example widget_spec.js */
+steal('widget.js', function() {
+
+	describe('the widget', function() {
+		it('is a widget', function() {
+			expect(window.Widget).toBeDefined();
+		})
+	})
+})
 ```
