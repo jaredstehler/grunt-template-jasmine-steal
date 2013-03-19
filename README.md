@@ -40,7 +40,7 @@ grunt.initConfig({
         host: 'http://127.0.0.1:8000/',
         template: require('grunt-template-jasmine-steal'),
         templateOptions: {
-          stealConfig: {
+          stealOptions: {
 			stealUrl: '/src/steal/steal.js',
             baseUrl: '/'
           }
