@@ -40,21 +40,22 @@ module.exports = function(grunt) {
     },
     connect: {
       test: {
-        port: 8000,
-        base: '.'
+        options: {
+          port: '?'
+        }
       }
     },
     jasmine: {
       steal: {
-        src: 'test/fixtures/steal/src/**/*.js',
         options: {
           specs: 'test/fixtures/steal/spec/*Spec.js',
-          helpers: 'test/fixtures/steal/spec/*Helper.js',
-          host: 'http://127.0.0.1:<%= connect.test.port %>/',
+          host: 'http://127.0.0.1:<%= connect.test.options.port %>/',
           template : require('./'),
           templateOptions: {
             stealOptions : {
-              baseUrl: '../..'
+              map: {
+                'test': '../../test'
+              }
             }
           }
         }

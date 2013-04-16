@@ -4,36 +4,33 @@
   <meta charset="utf-8">
   <title>Jasmine Spec Runner</title>
 
+  <script src="<%= options.stealOptions.stealUrl %>"></script>
+  <script>
+    <% if (options.stealOptions.map) { %>
+      steal.map(<%= JSON.stringify(options.stealOptions.map) %>);
+    <% } %>
+  </script>
+
   <% with (scripts) { %>
   <% [].concat(jasmine, vendor, helpers).forEach(function(script){ %>
   <script src="<%= script %>"></script>
   <% }) %>
   <% }; %>
 
-  <script src="<%= options.stealOptions.stealUrl %>"></script>
-  <script>
-    <% if (options.stealOptions.config) { %>
-      //steal.config(<%= JSON.stringify(options.stealOptions.config) %>);
-    <% } %>
-  </script>
-
-  <% css.forEach(function(style){ %>
+ <% css.forEach(function(style){ %>
   <link rel="stylesheet" type="text/css" href="<%= style %>">
   <% }) %>
   
   <script>
 	steal
 	<% scripts.specs.forEach(function(script, i){ %>
-	  <% script = script.replace(/^\.\//, "/"); %>
-		.then("<%= script %>")
+		.then("<%= fn.pathify(script) %>")
 	<% }) %>
 	<% scripts.reporters.forEach(function(script, i){ %>
-	  <% script = script.replace(/^\.\//, "/"); %>
-		.then("<%= script %>")
+		.then("<%= fn.pathify(script) %>")
 	<% }) %>
 	<% scripts.start.forEach(function(script, i){ %>
-	  <% script = script.replace(/^\.\//, "/"); %>
-		.then("<%= script %>")
+		.then("<%= fn.pathify(script) %>")
 	<% }) %>
   </script>
 </head>

@@ -1,6 +1,6 @@
 {
   "name": "grunt-template-jasmine-steal",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "StealJS template for grunt-contrib-jasmine",
   "main": "src/template-jasmine-steal.js",
   "scripts": {
@@ -21,11 +21,13 @@
   "contributors": ["Jarrod Overson"],
   "license": "BSD",
   "devDependencies": {
-    "grunt-contrib-jshint": "~0.1.1rc5",
-    "grunt-contrib-watch": "~0.1.4",
-    "grunt": "~0.4.0rc5",
-    "grunt-contrib-jasmine": "~0.3.0rc5",
-    "grunt-contrib-connect": "~0.1.0",
-    "grunt-lib-phantomjs": "0.2.0"
+    "grunt-contrib-jshint": "~0.4.3",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-connect": "~0.3.0",
+    "grunt-lib-phantomjs": "~0.3.0"
+  },
+  "dependencies": {
+    "grunt": "~0.4.0",
+    "grunt-contrib-jasmine": "~0.4.2"
   }
 }

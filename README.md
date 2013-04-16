@@ -13,12 +13,12 @@ npm install grunt-template-jasmine-steal --save-dev
 Type: `String`
 Default: path to steal.js (defaults to internal version, probably not desired)
 
-The version of steal to use.
+The steal script to use.
 
-### templateOptions.stealOptions.config
+### templateOptions.stealOptions.map
 Type: `Object`
 
-This object is `JSON.stringify()`-ed into the template and passed into `steal.config()`
+This object is `JSON.stringify()`-ed into the template and passed into `steal.map()`
 
 
 ## Sample usage
@@ -28,21 +28,27 @@ This object is `JSON.stringify()`-ed into the template and passed into `steal.co
 grunt.initConfig({
   connect: {
     test : {
-      port : 8000
+      options: {
+        base : '.',
+        port : '?'
+      }
     }
-  }
+  },
+
   jasmine: {
     taskName: {
       src: 'src/**/*.js',
       options: {
         specs: 'spec/*Spec.js',
         helpers: 'spec/*Helper.js',
-        host: 'http://127.0.0.1:8000/',
+        host: 'http://127.0.0.1:<%= connect.test.options.port %>/',
         template: require('grunt-template-jasmine-steal'),
         templateOptions: {
           stealOptions: {
-			stealUrl: '/src/steal/steal.js',
-            baseUrl: '/'
+			      stealUrl: 'src/steal/steal.js',
+            map: {
+                '.grunt': '../.grunt'
+            }
           }
         }
       }
