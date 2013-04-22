@@ -5,17 +5,19 @@
   <title>Jasmine Spec Runner</title>
 
   <script src="<%= options.stealOptions.stealUrl %>"></script>
-  <script>
-    <% if (options.stealOptions.map) { %>
+  <% if (options.stealOptions.map) { %>
+    <script>
       steal.map(<%= JSON.stringify(options.stealOptions.map) %>);
-    <% } %>
-  </script>
+    </script>
+  <% } %>
 
-  <% with (scripts) { %>
-  <% [].concat(jasmine, vendor, helpers).forEach(function(script){ %>
-  <script src="<%= script %>"></script>
-  <% }) %>
-  <% }; %>
+  <% if(options.stealOptions.executed) { %>
+    <script>
+      <% options.stealOptions.executed.forEach(function(script) { %>
+        steal.executed("<%= script %>");
+      <% }) %>
+    </script>
+  <% } %>
 
  <% css.forEach(function(style){ %>
   <link rel="stylesheet" type="text/css" href="<%= style %>">
@@ -23,6 +25,14 @@
   
   <script>
 	steal
+
+  <% with (scripts) { %>
+  <% [].concat(jasmine, vendor, helpers).forEach(function(script){ %>
+    .then("<%= fn.pathify(script) %>")
+  <% }) %>
+  <% }; %>
+
+
 	<% scripts.specs.forEach(function(script, i){ %>
 		.then("<%= fn.pathify(script) %>")
 	<% }) %>

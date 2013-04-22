@@ -24,8 +24,14 @@ exports.process = function(grunt, task, context) {
     pathify: function(s) {
       var stealRel = new RegExp('^.*' + stealRoot),
           baseRel = /^\.\//,
-          supportRel = /^\.grunt\//;
-      return s.replace(stealRel, '').replace(baseRel, '').replace(supportRel, '/.grunt/');
+          supportRel = /^\.grunt\//,
+          absBase = '';
+
+      if(s.indexOf(stealRoot) === -1 && s.indexOf('.grunt') === -1) {
+        absBase = '/';
+      }
+
+      return absBase + s.replace(stealRel, '').replace(baseRel, '').replace(supportRel, '/.grunt/');
     }
   };
 
