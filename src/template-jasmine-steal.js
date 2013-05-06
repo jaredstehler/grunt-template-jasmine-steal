@@ -9,7 +9,7 @@ var template = __dirname + '/templates/jasmine-steal.html',
 exports.process = function(grunt, task, context) {
   context.options.stealOptions = context.options.stealOptions || {};
 
-  var stealUrl = context.options.stealOptions.stealUrl;
+  var stealUrl = context.options.steal.url;
 
   // find the latest version if none given
   if (!stealUrl) {
@@ -18,7 +18,7 @@ exports.process = function(grunt, task, context) {
 
   var stealRoot = stealUrl.substring(0, stealUrl.indexOf('steal/steal.js'));
 
-  context.options.stealOptions.stealUrl = stealUrl;
+  context.options.steal.url = stealUrl;
 
   context.fn = {
     pathify: function(s) {
@@ -34,10 +34,6 @@ exports.process = function(grunt, task, context) {
       return absBase + s.replace(stealRel, '').replace(baseRel, '').replace(supportRel, '/.grunt/');
     }
   };
-
-  context.options.stealOptions.config = grunt.util._.extend({
-  
-  }, context.options.stealOptions.config);
 
   // put steal into place
   task.copyTempFile(steal['3.2.3'] + '/steal.js','steal/steal.js');

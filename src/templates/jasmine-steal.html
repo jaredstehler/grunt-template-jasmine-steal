@@ -4,16 +4,23 @@
   <meta charset="utf-8">
   <title>Jasmine Spec Runner</title>
 
-  <script src="<%= options.stealOptions.stealUrl %>"></script>
-  <% if (options.stealOptions.map) { %>
+  <% if(options.steal.options) { %>
     <script>
-      steal.map(<%= JSON.stringify(options.stealOptions.map) %>);
+      steal = <%= JSON.stringify(options.steal.options) %>
     </script>
   <% } %>
 
-  <% if(options.stealOptions.executed) { %>
+  <script src="<%= options.steal.url %>"></script>
+
+  <% if (options.steal.map) { %>
     <script>
-      <% options.stealOptions.executed.forEach(function(script) { %>
+      steal.map(<%= JSON.stringify(options.steal.map) %>);
+    </script>
+  <% } %>
+
+  <% if(options.steal.executed) { %>
+    <script>
+      <% options.steal.executed.forEach(function(script) { %>
         steal.executed("<%= script %>");
       <% }) %>
     </script>

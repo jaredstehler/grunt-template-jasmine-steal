@@ -52,7 +52,7 @@ module.exports = function(grunt) {
           host: 'http://127.0.0.1:<%= connect.test.options.port %>/',
           template : require('./'),
           templateOptions: {
-            stealOptions : {
+            steal : {
               map: {
                 'test': '../../test'
               }
